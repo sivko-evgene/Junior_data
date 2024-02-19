@@ -1,6 +1,7 @@
 import logging
 
 import pandas as pd
+import numpy as np
 
 logging.basicConfig(
     filename='test_logs.log',
@@ -35,3 +36,9 @@ class DataPreparation:
         df = df.rename(columns={'index': 'country', 'user_quantity': 'user_quantity'})
         df['sum_user_quantity'] = df['user_quantity'].sum()
         return df
+
+    def coin_generating(self, n_size: int, probability_one) -> pd.Series:
+        result = []
+        for _ in range(n_size):
+            result.append(np.random.binomial(1, probability_one))
+        return pd.Series(result)
